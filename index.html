@@ -158,8 +158,49 @@
       <button id="send-button">Send</button>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const messageInput = document.getElementById('message-input');
+      const sendButton = document.getElementById('send-button');
+      const chatMessages = document.getElementById('chat-messages');
+      const typingIndicator = document.getElementById('typing-indicator');
 
-  <!-- קישור לסקריפט מ-GitHub -->
-  <script src="https://raw.githubusercontent.com/Doctorlek/Myai/refs/heads/main/Chat.js"></script>
+      const addMessage = (message, isUser = true) => {
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+        const content = document.createElement('div');
+        content.className = 'message-content';
+        content.textContent = message;
+        messageElement.appendChild(content);
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      };
+
+      sendButton.addEventListener('click', () => {
+        const userMessage = messageInput.value.trim();
+        if (!userMessage) return;
+
+        addMessage(userMessage);
+        messageInput.value = '';
+        typingIndicator.style.display = 'block';
+
+        fetch(`https://darkness.ashlynn.workers.dev/chat/?prompt=${encodeURIComponent(userMessage)}&model=gpt-4o-mini`)
+          .then((response) => response.json())
+          .then((data) => {
+            typingIndicator.style.display = 'none';
+            addMessage(data.response, false);
+          })
+          .catch((error) => {
+            typingIndicator.style.display = 'none';
+            console.error('Error:', error);
+            addMessage('Error: Unable to fetch response.', false);
+          });
+      });
+
+      messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendButton.click();
+      });
+    });
+  </script>
 </body>
 </html>
