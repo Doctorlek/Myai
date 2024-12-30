@@ -165,6 +165,7 @@
       const chatMessages = document.getElementById('chat-messages');
       const typingIndicator = document.getElementById('typing-indicator');
 
+      // פונקציה להוסיף הודעה
       const addMessage = (message, isUser = true) => {
         const messageElement = document.createElement('div');
         messageElement.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -176,19 +177,39 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
       };
 
+      // פונקציה לשמירת השיחות בהיסטוריה
+      const saveChatHistory = (message, sender) => {
+        let chatHistory = JSON.parse(localStorage.getItem('chat_history')) || [];
+        chatHistory.push({ text: message, sender });
+        localStorage.setItem('chat_history', JSON.stringify(chatHistory));
+      };
+
+      // פונקציה להחזרת היסטוריית השיחות
+      const loadChatHistory = () => {
+        const chatHistory = JSON.parse(localStorage.getItem('chat_history')) || [];
+        chatHistory.forEach(message => addMessage(message.text, message.sender === 'user'));
+      };
+
+      // שליחת הודעה
       sendButton.addEventListener('click', () => {
         const userMessage = messageInput.value.trim();
         if (!userMessage) return;
 
         addMessage(userMessage);
+        saveChatHistory(userMessage, 'user');
         messageInput.value = '';
         typingIndicator.style.display = 'block';
 
-        fetch(`https://darkness.ashlynn.workers.dev/chat/?prompt=${encodeURIComponent(userMessage)}&model=gpt-4o-mini`)
+        const history = JSON.parse(localStorage.getItem('chat_history')) || [];
+        const historyString = history.map(msg => msg.text).join('\n');
+
+        fetch(`https://darkness.ashlynn.workers.dev/chat/?prompt=${encodeURIComponent(historyString + '\n' + userMessage)}&model=gpt-4o-mini`)
           .then((response) => response.json())
           .then((data) => {
             typingIndicator.style.display = 'none';
-            addMessage(data.response, false);
+            const botMessage = data.response || 'Sorry, something went wrong.';
+            addMessage(botMessage, false);
+            saveChatHistory(botMessage, 'bot');
           })
           .catch((error) => {
             typingIndicator.style.display = 'none';
@@ -196,10 +217,8 @@
             addMessage('Error: Unable to fetch response.', false);
           });
       });
-
-      messageInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendButton.click();
-      });
+      // טעינת היסטוריית השיחות עם טעינת הדף
+      loadChatHistory();
     });
   </script>
 </body>
