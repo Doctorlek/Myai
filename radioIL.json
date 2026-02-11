@@ -1,0 +1,87 @@
+[
+  {
+    "name": "רדיו דרום",
+    "url": "https://cdn.cybercdn.live/Darom_97FM/Live/icecast.audio",
+    "logo": "logos/radio_darom.jpg"
+  },
+  {
+    "name": "גלגצ",
+    "url": "http://glzwizzlv.bynetcdn.com/glglz_mp3",
+    "logo": "logos/glgz.png"
+  },
+  {
+    "name": "רדיו גלי ישראל",
+    "url": "https://cdn.cybercdn.live/Galei_Israel/Live/icecast.audio",
+    "logo": "logos/galisrael.jpg"
+  },
+  {
+    "name": "רדיו קול ברמה",
+    "url": "https://cdn.cybercdn.live/Kol_Barama/Live_Audio/icecast.audio",
+    "logo": "logos/kolbarama.png"
+  },
+  {
+    "name": "רדיו לב המדינה",
+    "url": "https://cdn.cybercdn.live/Lev_Hamedina/Audio/icecast.audio",
+    "logo": "logos/levhamedina.png"
+  },
+  {
+    "name": "רדיו נושמים מזרחית",
+    "url": "https://mzr.mediacast.co.il/mzradio",
+    "logo": "logos/mizrahi.png"
+  },
+  {
+    "name": "רדיו חיפה",
+    "url": "http://cp11.livecdn.biz/radiohaifa",
+    "logo": "logos/haifa.png"
+  },
+  {
+    "name": "אקו 99 fm דרום",
+    "url": "http://eco01.livecdn.biz/ecolive/99fm_aac/icecast.audio",
+    "logo": "logos/99fm.png"
+  },
+  {
+    "name": "רדיו רשת ב",
+    "url": "https://kanliveicy.media.kan.org.il/icy/kanbet_mp3?providername=radya",
+    "logo": "logos/kan_bet.png"
+  },
+  {
+    "name": "רדיו קול רגע",
+    "url": "http://96.cdnwz.net/96fm",
+    "logo": "logos/kolrega.png"
+  },
+  {
+    "name": "רדיו ביט",
+    "url": "http://live.radio-beat.com/stream1",
+    "logo": "logos/radio_beat.png"
+  },
+  {
+    "name": "רדיו 103",
+    "url": "https://cdn.cybercdn.live/103FM/Live/icecast.audio",
+    "logo": "logos/103fm.png"
+  },
+  {
+    "name": "רדיו 102",
+    "url": "http://102.livecdn.biz/102fm_aac",
+    "logo": "logos/102fm.png"
+  },
+  {
+    "name": "רדיו ירושלים",
+    "url": "http://101.cdnwz.net/101fm",
+    "logo": "logos/jerusalem.png"
+  },
+  {
+    "name": "רדיו אילת",
+    "url": "http://music.cdnwz.net/eilat",
+    "logo": "logos/eilat.webp"
+  },
+  {
+    "name": "רדיו קול חי",
+    "url": "https://media2.93fm.co.il/live-new",
+    "logo": "logos/kolchi.png"
+  },
+  {
+    "name": "רדיו ספורט 5",
+    "url": "https://rgelive.akamaized.net/hls/live/2043150/radio5/playlist.m3u8",
+    "logo": "logos/radio5.png"
+  }
+]
